@@ -15,7 +15,7 @@ pipeline {
   stage ('Check-Git-Secrets') {
       steps {
         sh 'rm trufflehog || true'
-        sh 'docker run --rm gesellix/trufflehog --json https://github.com/ervishnu/webapp.git > trufflehog'
+        sh 'docker run --rm gesellix/trufflehog --json https://github.com/MrSingh23-Var/webapp.git > trufflehog'
         sh 'cat trufflehog'
       }
     }       
@@ -56,7 +56,7 @@ pipeline {
     
   stage ('DAST') {
       steps {
-        sh 'docker run -t owasp/zap2docker-stable zap-baseline.py -t http://192.168.29.65:9090/webapp/ || true'
+        sh 'docker run -t owasp/zap2docker-stable zap-baseline.py -t http://192.168.152.128:9090/webapp/ || true'
         
       }
     }      
